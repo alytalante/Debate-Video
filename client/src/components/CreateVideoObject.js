@@ -45,11 +45,16 @@ export default function CreateVideoObject() {
     newVideo.name = video.snippet.localized.title;
     newVideo.vidId = video.id;
     newVideo.thumbnail = video.snippet.thumbnails.high.url;
-    newVideo.description = video.snippet.description;
+
+    if (video.snippet.description === "") {
+      newVideo.description = "no description entered";
+    } else {
+      newVideo.description = video.snippet.description;
+    }
     newVideo.aff = affRef.current.value;
     newVideo.neg = negRef.current.value;
     newVideo.tags = tagsArray;
-    console.log(video);
+
     console.log(newVideo);
 
     axios

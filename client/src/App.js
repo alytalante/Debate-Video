@@ -5,7 +5,7 @@ import SimpleUpload from "./components/SimpleUpload";
 function App() {
   return (
     <div className="App">
-      <SimpleUpload />
+      <CreateVideoObject />
     </div>
   );
 }
