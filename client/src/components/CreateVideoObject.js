@@ -1,15 +1,22 @@
 import React, { createRef, useEffect, useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
+import { set } from "mongoose";
 
 export default function CreateVideoObject() {
   const [video, setVideo] = useState({});
   const [isLoaded, setIsLoaded] = useState(false);
   const [isVideoCorrect, setIsVideoCorrect] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const [error, setError] = useState(false);
+  const [url, setUrl] = useState("");
+
   const urlInput = createRef();
 
   const tagsRef = createRef();
   const affRef = createRef();
   const negRef = createRef();
+  const tournRef = createRef();
 
   const createVideo = (e) => {
     e.preventDefault();
@@ -53,19 +60,34 @@ export default function CreateVideoObject() {
     }
     newVideo.aff = affRef.current.value;
     newVideo.neg = negRef.current.value;
-    newVideo.tags = tagsArray;
+    newVideo.tags = cleanArray();
+    newVideo.tournament = tournRef.current.value;
 
     console.log(newVideo);
 
     axios
       .post("api/v1/videos", newVideo)
       .then((res) => {
-        console.log(res);
+        console.log(res.data.video._id);
+        setTimeout(() => {
+          setUrl(res.data.video._id);
+        }, 200);
+        setSuccess(true);
       })
       .catch((err) => {
         console.log(err);
+        setError("All fields must be entered!");
       });
   };
+  function cleanArray() {
+    let tagsArray = tagsRef.current.value.split(",");
+    let cleanArray = [];
+    tagsArray.forEach((tag) => {
+      let newTag = tag.replace(" ", "");
+      cleanArray.push(newTag);
+    });
+    return cleanArray;
+  }
 
   return (
     <div className="page">
@@ -73,14 +95,13 @@ export default function CreateVideoObject() {
         <>
           {" "}
           <form onSubmit={createVideo} className="submitform">
-            <p> Thank you for uploading this video to debate video! </p>
-            <p>
-              {" "}
-              This page will walk you through the video upload process. Here are
-              the steps to follow:
-            </p>
+            <h3>Weclome</h3>
+            <p> Thank you for choosing to submit to Debate Video. </p>
+            <p> This page will walk you through the video upload process.</p>
             <label>Enter video youtube URL: </label>
+            <br />
             <input ref={urlInput} />
+            <br />
             <button onClick={createVideo}> Submit </button>
           </form>
         </>
@@ -94,45 +115,63 @@ export default function CreateVideoObject() {
             </div>
             <div className="flexRight">
               <div>
-                <h4 className="head">{video.snippet.localized.title}</h4>
-              </div>
-              <div>
-                <p className="description">
-                  {video.snippet.description.substring(0, 270)}...
-                </p>
+                <h3 className="head">{video.snippet.localized.title}</h3>
               </div>
             </div>
           </div>
-          <p>Does the video information above appear correct?</p>
-          <div>
-            <button onClick={confirmCorrect}>Yes</button>
-            <button>No</button>
+          <div className="confirm">
+            <p>Looks like this is your video.</p>
+            <div>
+              <button onClick={confirmCorrect}>Continue</button>
+            </div>
           </div>
         </>
       )}
-      {isVideoCorrect === true && (
-        <form onSubmit={postVideo}>
-          Good. Lets go ahead and enter some information on this video!
-          <div className="formSection">
-            <label>Enter tags (separate by comma)</label>
-            <textarea ref={tagsRef} />
-          </div>
-          <div className="formSection">
-            <label>
-              Please enter affirmative team name (Format should be "School -
-              Initial/Initial", i.e. "Utah C/J")
-            </label>
-            <input ref={affRef} />
-          </div>
-          <div className="formSection">
-            <label>
-              Please enter negative team name (Format should be "School -
-              Initial/Initial", i.e. "Utah C/J")
-            </label>
-            <input ref={negRef} />
-          </div>
+      {isVideoCorrect === true && success === false && (
+        <form onSubmit={postVideo} className="submitform wide">
+          <h3>Lets go ahead and enter some information on this video!</h3>
+
+          <label>Enter tags (separate by commas):</label>
+          <textarea ref={tagsRef} />
+          <br />
+          <label>
+            Affirmative team name (Format should be "School - Initial/Initial",
+            i.e. "Utah C/J"):
+          </label>
+          <input ref={affRef} />
+          <br />
+          <label>
+            Negative team name (Format should be "School - Initial/Initial",
+            i.e. "Utah C/J"):
+          </label>
+          <input ref={negRef} />
+          <br />
+          <label>
+            Tournament name (format should be "name- year", i.e. "NPTE 2018"):
+          </label>
+          <input
+            onChange={() => console.log(tournRef.current.value)}
+            ref={tournRef}
+          />
+          <br />
+          {error !== false && (
+            <div className="error">
+              <strong>ERROR: </strong>
+              {error}
+            </div>
+          )}
+          <br />
           <button>Upload</button>
         </form>
+      )}
+      {success === true && (
+        <div>
+          <h1>Congrats!</h1>
+          <p>
+            Your video has been successfully uploaded. It is avaialbe{" "}
+            <Link to={`/video/` + url}>here</Link>.
+          </p>
+        </div>
       )}
     </div>
   );

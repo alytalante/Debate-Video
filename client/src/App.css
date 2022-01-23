@@ -1,5 +1,18 @@
 body {
   font-family: "Open Sans", sans-serif;
+  background-color: white;
+  margin: 0;
+  padding: 0;
+}
+
+button {
+  cursor: pointer;
+  color: #2568fb;
+}
+
+.App {
+  height: 100vh;
+  position: relative;
 }
 
 .page {
@@ -7,18 +20,56 @@ body {
   display: grid;
   place-items: center;
   place-content: center;
+  overflow: scroll;
 }
 
 .submitform {
-  border: 1px solid black;
-  padding: 15px;
+  background-color: #2568fb;
+  padding: 20px;
   width: 50%;
   min-width: 300px;
   margin: 15px 0;
+  display: flex;
+  flex-direction: column;
+  color: white;
+  font-size: 1.2rem;
+  text-align: center;
+}
+
+.submitform textarea {
+  display: block;
+  border-radius: 5px;
+  font-size: 1.1rem;
+  padding: 2px;
+  border: 1px solid #fecd45;
+  resize: none;
+  margin-top: 5px;
+}
+
+.submitform input {
+  display: block;
+  border-radius: 5px;
+  font-size: 1.1rem;
+  padding: 2px;
+  border: 1px solid #fecd45;
+  margin-top: 5px;
+}
+
+.submitform button {
+  background-color: #fecd45;
+  border: none;
+  padding: 5px 0;
+  border-radius: 5px;
+}
+
+.wide {
+  width: 80%;
+  font-size: 1rem;
 }
 
 .vidPreview {
-  border: 1px solid black;
+  background-color: #2568fb;
+  color: white;
   display: flex;
   width: 50%;
   flex-wrap: wrap;
@@ -26,10 +77,43 @@ body {
   place-items: center;
 }
 
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
 .vidPreview div img {
   width: 100%;
   display: block;
   margin: 0 auto;
+}
+
+.error {
+  background-color: #e61255;
+  border: 1px solid #750b2d;
+  border-radius: 5px;
+  padding: 6px 0;
+}
+
+.confirm {
+  width: 50%;
+  background-color: #2568fb;
+  display: flex;
+  flex-direction: column;
+  place-items: center;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  padding-bottom: 10px;
+}
+
+.confirm button {
+  background-color: #fecd45;
+  border: none;
+  padding: 5px 0;
+  border-radius: 5px;
+  width: 70px;
+  margin: 0 10px;
 }
 
 .head {
@@ -51,4 +135,296 @@ body {
   flex: 3;
   min-width: 250px;
   overflow: scroll;
+}
+
+.navBar {
+  height: 50px;
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  background-color: #2568fb;
+  justify-content: space-between;
+  color: #fecd45;
+  flex-wrap: wrap;
+}
+
+h1 {
+  color: #2568fb;
+  font-weight: 900;
+  text-align: center;
+}
+
+h3,
+h2 {
+  color: #fecd45;
+  font-weight: 900;
+  text-align: center;
+}
+
+.titleBox {
+  display: flex;
+  align-items: center;
+  margin: 0 10px;
+  font-weight: 800;
+
+  font-size: 1.9rem;
+}
+
+.search {
+  margin: 0 10px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+}
+
+.search div {
+  margin-right: 10px;
+}
+
+.search input {
+  display: block;
+  border-radius: 5px;
+  font-size: 1.1rem;
+  padding: 2px;
+  border: 1px solid #fecd45;
+}
+
+.searchHid input {
+  display: block;
+  border-radius: 5px;
+  font-size: 0.8rem;
+  padding: 2px;
+  margin: 5px auto;
+  border: 1px solid #fecd45;
+}
+
+.searchHid {
+  width: 100%;
+
+  background-color: #2568fb;
+}
+
+.titleBox img {
+  height: 30px;
+  margin-right: 10px;
+}
+
+.vidMain {
+  display: grid;
+  place-items: center;
+}
+
+.roundInfo {
+  border: 1px solid #2568fb;
+  padding: 0 15px 15px 15px;
+  background-color: #2568fb;
+  color: white;
+  font-size: 1.1rem;
+}
+
+.player {
+  border: 1px solid #2568fb;
+  display: flex;
+  justify-content: center;
+}
+.tagFlex {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: left;
+}
+
+.tag {
+  background-color: #fecd45;
+  padding: 1px 6px;
+  border-radius: 3px;
+  margin: 5px;
+  color: #2568fb;
+  font-weight: 600;
+}
+
+strong {
+  color: #fecd45;
+}
+
+iframe {
+  aspect-ratio: 1 / 4;
+  width: 100%;
+}
+
+.vidLoaded {
+  width: 50%;
+  min-width: 350px;
+}
+
+.toggle {
+  display: none;
+  margin-right: 10px;
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+.video {
+  background-color: #2568fb;
+  width: 60%;
+  margin: 30px auto;
+  display: flex;
+  flex-wrap: wrap;
+  color: white;
+}
+
+.video img {
+  flex: 1;
+  width: 100%;
+}
+
+.vr {
+  flex: 1;
+  text-align: center;
+  padding: 10px;
+  padding-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.specbutton {
+  width: 100%;
+  background-color: #fecd45;
+  border: none;
+  padding: 5px 0;
+  border-radius: 5px;
+  margin-top: 20px;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.under {
+  text-decoration: underline;
+  margin-right: 15px;
+}
+
+.upload {
+  display: block;
+  background-color: #fecd45;
+  border: none;
+  padding: 5px 0;
+  border-radius: 5px;
+  width: 70px;
+  margin: 0 10px;
+  font-weight: 600;
+}
+
+.sResults {
+  position: fixed;
+  background-color: white;
+  color: black;
+  font-size: 0.9rem;
+  min-width: 300px;
+  right: 0;
+}
+
+.iResult {
+  border: 1px solid black;
+  display: flex;
+  place-items: center;
+}
+
+.tiny {
+  width: 60px;
+  margin: 10px;
+}
+
+.iResult:hover {
+  border: 1px solid black;
+  color: #fecd45;
+  background-color: #2568fb;
+}
+
+.about {
+  margin: 0 auto;
+  text-align: center;
+  width: 70%;
+}
+
+.about p {
+  font-size: 1.2rem;
+}
+
+.about p a {
+  text-decoration: underline;
+  color: #2568fb;
+}
+
+.blueHeader {
+  color: #2568fb;
+}
+
+hr {
+  width: 20%;
+  border: none;
+  border-bottom: 1px solid #2568fb;
+}
+
+.homeSearch {
+  background-color: #2568fb;
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
+  place-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding-bottom: 20px;
+  border-radius: 5px;
+  max-width: 800px;
+}
+
+.homeSearch p {
+  text-align: center;
+  color: white;
+}
+
+.homeSR {
+  display: flex;
+  place-items: center;
+}
+
+.homeSearch button {
+  display: block;
+  background-color: #fecd45;
+  border: none;
+  padding: 5px 0;
+  border-radius: 5px;
+  width: 50px;
+  margin: 0 10px;
+  font-weight: 700;
+}
+
+.homeSearch input {
+  display: block;
+  border-radius: 5px;
+  font-size: 1.1rem;
+  padding: 2px;
+  border: 1px solid #fecd45;
+}
+
+@media only screen and (max-width: 600px) {
+  .search {
+    display: none;
+  }
+
+  span {
+    font-size: 0.9rem;
+  }
+
+  .titleBox {
+    font-size: 1rem;
+  }
+
+  .toggle {
+    display: block;
+  }
 }

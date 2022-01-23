@@ -46,7 +46,7 @@ export default function SimpleUpload() {
           </p>
           <label>Enter video youtube URL: </label>
           <input ref={urlInput} />
-          <button onClick={createVideo}> Submit </button>
+          <button onClick={test}> test </button>
         </form>
       </>
     </div>

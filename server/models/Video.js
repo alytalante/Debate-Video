@@ -7,6 +7,7 @@ const VideoSchema = new mongoose.Schema({
   name: { type: String, requiredusers: true, default: "Empty" },
   tags: { type: Array, required: true, default: "Empty" },
   thumbnail: { type: String, required: true, default: "Empty" },
+  tournament: { type: String, required: true, default: "Empty" },
   vidId: { type: String, required: true, default: "Empty" },
 });
 

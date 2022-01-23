@@ -23,6 +23,23 @@ const getOneVideo = async (req, res) => {
   }
 };
 
+const getOneVideoByQuery = async (req, res) => {
+  const tag = req.params.tag.replace(/#|_/g, " ");
+  console.log(tag);
+  try {
+    // const videos = await Video.find({ tags: { $all: [tag] } });
+    const videos = await Video.find().or([
+      { aff: { $regex: tag, $options: "i" } },
+      { tags: { $all: [tag] } },
+      { neg: { $regex: tag, $options: "i" } },
+      { tournament: { $regex: tag, $options: "i" } },
+    ]);
+    res.status(200).json({ videos });
+  } catch (error) {
+    res.status(500).json({ msg: error });
+  }
+};
+
 const createNewVideo = async (req, res) => {
   console.log("post");
   try {
@@ -35,6 +52,7 @@ const createNewVideo = async (req, res) => {
       tags: req.body.tags,
       thumbnail: req.body.thumbnail,
       vidId: req.body.vidId,
+      tournament: req.body.tournament,
     });
     res.status(201).json({ video });
   } catch (error) {
@@ -46,4 +64,5 @@ module.exports = {
   getAllVideos,
   createNewVideo,
   getOneVideo,
+  getOneVideoByQuery,
 };
