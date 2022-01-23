@@ -12,7 +12,7 @@ export default function Home() {
     axios
       .get("/api/v1/videos")
       .then((res) => {
-        setVideos(res.data.videos);
+        setVideos(res.data.videos.reverse());
       })
       .catch((err) => {});
   }, []);
