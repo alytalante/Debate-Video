@@ -18,7 +18,7 @@ export default function Home() {
   }, []);
 
   const handleSearchChange = () => {
-    setUrl(searchRef.current.value);
+    setUrl(searchRef.current.value.toLowerCase());
   };
 
   return (
