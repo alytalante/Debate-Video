@@ -51,18 +51,20 @@ export default function Navbar() {
           {data.length > 0 && (
             <div className="sResults">
               {data.map((result, index) => {
-                return (
-                  <Link
-                    onClick={clearform}
-                    to={"/video/" + result._id}
-                    key={index}
-                  >
-                    <div className="iResult">
-                      <img className="tiny" src={result.thumbnail} />
-                      <div>{result.name}</div>
-                    </div>
-                  </Link>
-                );
+                if (index < 5) {
+                  return (
+                    <Link
+                      onClick={clearform}
+                      to={"/video/" + result._id}
+                      key={index}
+                    >
+                      <div className="iResult">
+                        <img className="tiny" src={result.thumbnail} />
+                        <div>{result.name}</div>
+                      </div>
+                    </Link>
+                  );
+                }
               })}
             </div>
           )}
