@@ -168,7 +168,7 @@ export default function CreateVideoObject() {
         <div>
           <h1>Congrats!</h1>
           <p>
-            Your video has been successfully uploaded. It is avaialbe{" "}
+            Your video has been successfully uploaded. It is available{" "}
             <Link to={`/video/` + url}>here</Link>.
           </p>
         </div>

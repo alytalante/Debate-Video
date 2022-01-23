@@ -31,6 +31,10 @@ app.get("/", (req, res) => {
   res.json({ message: "Hello from server!" });
 });
 
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "../client/build", "index.html"));
+});
+
 const start = async () => {
   try {
     await connectDB(process.env.MONGO_URI);
