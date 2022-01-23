@@ -10,6 +10,7 @@ export default function CreateVideoObject() {
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(false);
   const [url, setUrl] = useState("");
+  const [exists, setExists] = useState(false);
 
   const urlInput = createRef();
 
@@ -29,11 +30,22 @@ export default function CreateVideoObject() {
         `https://www.googleapis.com/youtube/v3/videos?part=snippet&part=player&id=${id}&key=AIzaSyB4CopCo_s5sJLiPSB37j8VrPPjkrYQMMk`
       )
       .then((res) => {
-        console.log(res.data.items[0]);
         setVideo(res.data.items[0]);
         setTimeout(() => {
           setIsLoaded(true);
+          doesItExist(res.data.items[0].id);
         }, 300);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const doesItExist = (id) => {
+    axios
+      .get("/api/v1/videos/yt/" + id)
+      .then((res) => {
+        setExists(res.data.exists);
       })
       .catch((err) => {
         console.log(err);
@@ -63,12 +75,9 @@ export default function CreateVideoObject() {
     newVideo.tags = cleanArray();
     newVideo.tournament = tournRef.current.value;
 
-    console.log(newVideo);
-
     axios
       .post("api/v1/videos", newVideo)
       .then((res) => {
-        console.log(res.data.video._id);
         setTimeout(() => {
           setUrl(res.data.video._id);
         }, 200);
@@ -119,12 +128,19 @@ export default function CreateVideoObject() {
               </div>
             </div>
           </div>
-          <div className="confirm">
-            <p>Looks like this is your video.</p>
-            <div>
-              <button onClick={confirmCorrect}>Continue</button>
+          {exists === false && (
+            <div className="confirm">
+              <p>Looks like this is your video.</p>
+              <div>
+                <button onClick={confirmCorrect}>Continue</button>
+              </div>
             </div>
-          </div>
+          )}
+          {exists === true && (
+            <div className="confirm">
+              <p>This video has already been uploaded.</p>
+            </div>
+          )}
         </>
       )}
       {isVideoCorrect === true && success === false && (
@@ -149,10 +165,7 @@ export default function CreateVideoObject() {
           <label>
             Tournament name (format should be "name- year", i.e. "NPTE 2018"):
           </label>
-          <input
-            onChange={() => console.log(tournRef.current.value)}
-            ref={tournRef}
-          />
+          <input ref={tournRef} />
           <br />
           {error !== false && (
             <div className="error">

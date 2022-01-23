@@ -10,10 +10,27 @@ const getAllVideos = async (req, res) => {
   }
 };
 
+const getByYTID = async (req, res) => {
+  const id = req.params.id;
+
+  try {
+    const video = await Video.findOne({ vidId: id });
+
+    if (video) {
+      res.status(200).json({ exists: true });
+    } else if (!video) {
+      res.status(200).json({ exists: false });
+    }
+  } catch (error) {
+    res.status(500).json({ msg: error });
+  }
+};
+
 const getOneVideo = async (req, res) => {
   try {
     const { id: videoId } = req.params;
     const video = await Video.findOne({ _id: videoId });
+
     if (!video) {
       return res.status(404).json({ msg: `no message with ID: ${videoId}` });
     }
@@ -65,4 +82,5 @@ module.exports = {
   createNewVideo,
   getOneVideo,
   getOneVideoByQuery,
+  getByYTID,
 };

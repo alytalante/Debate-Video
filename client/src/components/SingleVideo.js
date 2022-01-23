@@ -11,7 +11,6 @@ export default function SingleVideo() {
     axios
       .get("/api/v1/videos/" + params.id)
       .then((res) => {
-        console.log(res.data.video);
         setData(res.data.video);
       })
       .catch((err) => {
@@ -23,7 +22,6 @@ export default function SingleVideo() {
     axios
       .get("/api/v1/videos/" + params.id)
       .then((res) => {
-        console.log(res.data.video);
         setData(res.data.video);
       })
       .catch((err) => {

@@ -18,7 +18,6 @@ export default function Navbar() {
     axios
       .get("/api/v1/videos/tag/" + searchRef.current.value)
       .then((res) => {
-        console.log(res.data.videos);
         setData(res.data.videos);
       })
       .catch((err) => {

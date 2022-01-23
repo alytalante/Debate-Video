@@ -11,7 +11,6 @@ export default function SearchResults() {
     axios
       .get("/api/v1/videos/tag/" + params.query.replace(/#|%/g, " "))
       .then((res) => {
-        console.log(res.data.videos);
         setVideos(res.data.videos);
       })
       .catch((err) => console.log(err));
