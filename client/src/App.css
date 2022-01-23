@@ -274,6 +274,7 @@ iframe {
   display: flex;
   flex-wrap: wrap;
   color: white;
+  min-width: 350px;
 }
 
 .video img {
