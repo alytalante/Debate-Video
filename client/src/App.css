@@ -411,6 +411,13 @@ hr {
   border: 1px solid #fecd45;
 }
 
+.attribution {
+  background-color: #2568fb;
+  text-align: center;
+  color: white;
+  font-size: 0.7rem;
+}
+
 @media only screen and (max-width: 600px) {
   .search {
     display: none;

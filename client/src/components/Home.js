@@ -78,6 +78,11 @@ export default function Home() {
           })}
         </div>
       )}
+      <div className="attribution">
+        <a href="https://www.flaticon.com/free-icons/gavel" title="gavel icons">
+          Gavel icons created by Freepik - Flaticon
+        </a>
+      </div>
     </div>
   );
 }
