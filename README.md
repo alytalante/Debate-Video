@@ -2,7 +2,24 @@
 <img src='https://i.imgur.com/nOKnjLK.png'  width='600'>
 </p>
 
+<h1>Overview</h1>
+
 Debate Video is a site to how videos of intercollegiate deabte in the NPDA/NPTE format. Every year, hundreds of rounds are recorded at various tournaments but these rounds are not centralized in a single location. Due to varying tagging and naming practices, it can be hard to find these rounds when querying youtube. This is where we come in: our site allows users to feature debate videos on our site in a single databse with query requests optimized towards the sorts of data associated with these rounds. 
+
+<h1>Technologies</h1>
+
+<ul>
+  <li> HTML5
+  <li> CSS
+  <li> Javascript(ES6)
+  <li> React
+  <li> Node.js
+  <li> Express
+  <li> Mongoose
+  <li> MongoDB
+  <li> Git
+  <li> Github 
+</ul>
 
 <h1>How It Works:</h1>
 
@@ -12,7 +29,17 @@ Debate Video is a site to how videos of intercollegiate deabte in the NPDA/NPTE 
 
 3. Using Mongoose, the app's API allows for users to query data in the database. On the front-end this is connected to a search bar which accepts user input and query's the database using this input. 
 
-<h1>Features:</h1>
+<h1>Approach Taken:</h1>
+
+Since this project was designed for the National Parliamentary Tournament of Excellence, the goal was to create a simple and user friendly display to allow competitors, coaches, and tournamenmt adminstrators to quickly reference point totals per team. Additionally, the data-entry side of the application was designed to be straightforward, allowing for POST and PATCH requests to the API. 
+
+<h1>What I learned:</h1>
+
+This was one of my earliest projects working with NODE to make a REST API capable of CRUD operations. I had worked previously with 3rd party APIs, but this required me to understand how to develope my own as well as how to connect to a database. 
+
+If I work to go back and rework the application from scratch, I would focus on performing more data operations server-side rather than client-side. I would also dive a bit deeper into best practices for constructing data-entry forms. This form is functional, but in the future I will aim for optimal. 
+
+<h1>Visuals and Features:</h1>
 
 1. Easy to follow upload instructions to ensure ease of use and standard data entry practices. 
 
