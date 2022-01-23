@@ -53,26 +53,28 @@ export default function Home() {
       {videos !== undefined && (
         <div>
           {videos.map((video, index) => {
-            return (
-              <div key={index} className="video">
-                <img src={video.thumbnail} />
+            if (index < 15) {
+              return (
+                <div key={index} className="video">
+                  <img src={video.thumbnail} />
 
-                <div className="vr">
-                  <h2>{video.name}</h2>
-                  <div>
-                    <strong>Aff: </strong>
-                    {video.aff}
-                    <strong>Neg: </strong> {video.neg}
+                  <div className="vr">
+                    <h2>{video.name}</h2>
+                    <div>
+                      <strong>Aff: </strong>
+                      {video.aff}
+                      <strong>Neg: </strong> {video.neg}
+                    </div>
+                    <div>
+                      <strong>Tournament: </strong> {video.tournament}
+                    </div>
+                    <Link to={`/video/` + video._id}>
+                      <button className="specbutton">Click To Watch</button>
+                    </Link>
                   </div>
-                  <div>
-                    <strong>Tournament: </strong> {video.tournament}
-                  </div>
-                  <Link to={`/video/` + video._id}>
-                    <button className="specbutton">Click To Watch</button>
-                  </Link>
                 </div>
-              </div>
-            );
+              );
+            }
           })}
         </div>
       )}
